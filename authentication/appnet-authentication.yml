@@ -1,0 +1,51 @@
+generated: '2026-07-18'
+method: searched
+source: https://github.com/appdotnet/api-spec/blob/new-docs/content/reference/authentication/index.md
+docs: https://github.com/appdotnet/api-spec/tree/new-docs/content/reference/authentication
+note: >-
+  App.net is retired (shut down 2017-03-14); the authorization/token hosts under
+  account.app.net no longer resolve. This profile is transcribed verbatim from the
+  preserved api-spec authentication documentation.
+summary:
+  types:
+  - oauth2
+  oauth2_flows:
+  - authorizationCode
+  - implicit
+  - password
+  - clientCredentials
+  token_style: bearer
+  transport: HTTPS required for all requests
+schemes:
+- name: OAuth2
+  type: oauth2
+  description: >-
+    App.net authenticates with OAuth 2.0 bearer access tokens. Two token classes exist:
+    user tokens (act on behalf of a specific user) and app tokens (client-credentials,
+    act on behalf of the application). Tokens may be passed via the Authorization: Bearer
+    header (preferred), an access_token query-string parameter, or an access_token body
+    field on PUT/POST/PATCH.
+  flows:
+  - flow: authorizationCode
+    label: Web flow (server-side)
+    authorizationUrl: https://account.app.net/oauth/authenticate
+    forceDialogUrl: https://account.app.net/oauth/authorize
+    tokenUrl: https://account.app.net/oauth/access_token
+  - flow: implicit
+    label: Web flow (client-side)
+    authorizationUrl: https://account.app.net/oauth/authenticate
+  - flow: clientCredentials
+    label: App access token flow
+    tokenUrl: https://account.app.net/oauth/access_token
+  - flow: password
+    label: Password flow (restricted; requires special permission)
+    tokenUrl: https://account.app.net/oauth/access_token
+  scope_header: X-OAuth-Scopes
+  scopes_ref: scopes/appnet-scopes.yml
+token_kinds:
+- kind: user
+  description: Represents access to API resources on behalf of a specific user.
+- kind: app
+  description: >-
+    Client-credentials token representing the application itself; only developer-account
+    apps can request tokens for other users.
