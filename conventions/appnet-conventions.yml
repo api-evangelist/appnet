@@ -1,0 +1,58 @@
+generated: '2026-07-18'
+method: searched
+source: >-
+  https://github.com/appdotnet/api-spec/tree/new-docs/content/reference/make-request
+  (responses.md, rate-limits.md) and .../authentication/index.md
+description: >-
+  Cross-cutting request/response conventions that applied to every App.net Stream API
+  endpoint. Transcribed from the preserved api-spec; the service is retired.
+base_url: https://api.app.net/stream/0/
+alt_base_url: https://alpha-api.app.net/stream/0/
+api_style: REST over HTTPS, JSON responses, uniform data/meta envelope
+authentication:
+  scheme: OAuth 2.0 bearer tokens (Authorization header preferred)
+  key_types: [user token, app token]
+  detail: authentication/appnet-authentication.yml
+idempotency:
+  supported: false
+  note: App.net documented no idempotency-key mechanism.
+response_envelope:
+  shape: '{ data, meta }'
+  data: The requested object or list of objects; omitted entirely on error.
+  meta_fields:
+    code: Copy of the HTTP status code.
+    error_message: Human-readable error description (on error).
+    error_slug: Uniquely-identifying error slug (on error).
+    error_id: Unique error identifier for support (on error).
+    marker: Stream marker object (when relevant).
+    max_id: Pagination — highest id in the response.
+    min_id: Pagination — lowest id in the response.
+    more: Pagination — boolean, whether more results exist.
+  docs: https://github.com/appdotnet/api-spec/blob/new-docs/content/reference/make-request/responses.md
+pagination:
+  style: cursor (id-based)
+  request_params:
+    since_id: Return results newer than this id.
+    before_id: Return results older than this id.
+    count: Number of results to return.
+  response_fields: [meta.max_id, meta.min_id, meta.more]
+metadata:
+  annotations: >-
+    App.net supported "annotations" — typed, developer-defined metadata attached to
+    posts, users, messages, and other objects (see object-metadata / annotations docs).
+  docs: https://github.com/appdotnet/api-spec/blob/master/annotations.md
+serialization:
+  pretty_print_header: 'X-ADN-Pretty-JSON: 1'
+  jsonp: Supported via callback query param (unauthenticated only).
+  cors: Supported for authenticated cross-domain requests.
+versioning:
+  scheme: uri-path
+  current: 'stream/0'
+  note: Single documented API version (stream/0); no version negotiation header.
+rate_limit_signaling:
+  headers: [X-RateLimit-Remaining, X-RateLimit-Limit, X-RateLimit-Reset]
+  throttled_status: 429
+  retry_header: Retry-After
+  detail: rate-limits/appnet-rate-limits.yml
+error_envelope:
+  detail: errors/appnet-problem-types.yml

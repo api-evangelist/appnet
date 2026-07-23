@@ -1,0 +1,50 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+provider: App.net
+providerId: appnet
+generated: '2026-07-18'
+method: searched
+created: '2026-07-18'
+modified: '2026-07-18'
+tags:
+- Rate Limiting
+- Social
+description: >-
+  App.net Stream API rate limits, enforced per access token for authenticated calls and
+  per IP address for unauthenticated calls. Transcribed from the preserved api-spec
+  rate-limits documentation; the service is retired.
+sources:
+- https://github.com/appdotnet/api-spec/blob/new-docs/content/reference/make-request/rate-limits.md
+headers:
+  remaining: X-RateLimit-Remaining
+  limit: X-RateLimit-Limit
+  reset: X-RateLimit-Reset
+responseCodes:
+  throttled: 429
+retryHeader: Retry-After
+limits:
+- name: Global (authenticated)
+  scope: token
+  metric: requests
+  limit: 5000
+  timeFrame: hour
+  notes: Affects all authenticated endpoints, even when other limits also apply.
+- name: Write (authenticated)
+  scope: token
+  metric: requests
+  limit: 20
+  timeFrame: minute
+  notes: POST/DELETE requests.
+- name: Global (unauthenticated)
+  scope: ip
+  metric: requests
+  limit: 50
+  timeFrame: minute
+  notes: Affects all unauthenticated endpoints.
+policies:
+- name: Multiple limits
+  description: >-
+    A request may be subject to multiple limits; it counts against each, but headers
+    report only the most restrictive applicable limit.
+- name: Backoff
+  description: On 429, wait the number of seconds in the Retry-After header before retrying.

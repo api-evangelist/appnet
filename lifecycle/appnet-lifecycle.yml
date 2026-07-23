@@ -1,0 +1,29 @@
+generated: '2026-07-18'
+method: searched
+source: >-
+  https://github.com/appdotnet/api-spec ; App.net shutdown announcement (2016) and
+  service termination on 2017-03-14.
+note: >-
+  App.net is a retired service. There is no live status page, roadmap, or deprecation
+  policy to point to; the entire API reached end-of-life. This lifecycle record captures
+  the single documented API version and the shutdown as terminal lifecycle data. No
+  StatusPage or Deprecation policy pointers are emitted because none are published.
+versioning:
+  scheme: uri-path
+  current: 'stream/0'
+  docs: https://github.com/appdotnet/api-spec
+  notes: A single documented API version (stream/0); no per-request version negotiation.
+lifecycle_state: retired
+sunset:
+  service_shutdown: '2017-03-14'
+  announced: '2016'
+  notes: >-
+    App.net announced in 2016 that it would not renew and the paid service was shut
+    down on 2017-03-14. API hosts api.app.net and developers.app.net no longer resolve;
+    the app.net domain is now operated by an unrelated party.
+status_page: null
+sla: null
+roadmap: null
+preserved_documentation:
+  api_spec: https://github.com/appdotnet/api-spec
+  terms_of_service: https://github.com/appdotnet/terms-of-service

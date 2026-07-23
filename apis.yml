@@ -1,7 +1,31 @@
 aid: appnet
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/appnet.png
 name: App.net
-description: App.net is a company surfaced as a portfolio company of a16z and added to the API Evangelist
-  network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  App.net (ADN) was a paid, ad-free real-time social networking and microblogging
+  platform launched in 2012 by Dalton Caldwell's Mixed Media Labs after a public
+  crowdfunding campaign. It was explicitly developer-first: the App.net Stream API
+  exposed posts, users, follows, files, channels, private messaging, filters and a
+  real-time streaming/subscription surface, all governed by OAuth 2.0 bearer tokens
+  and a consistent data/meta response envelope. Third-party clients (Alpha, and many
+  community apps) were built entirely on the public API. App.net announced in 2016
+  that it would not renew and the service was shut down on 2017-03-14; the live API
+  hosts (api.app.net, developers.app.net) no longer resolve and the app.net domain is
+  now operated by an unrelated apps directory. The API documentation (appdotnet/api-spec),
+  terms of service, and official SDKs remain publicly preserved on the appdotnet GitHub
+  organization, which is the basis for this profile.
 url: https://raw.githubusercontent.com/api-evangelist/appnet/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -9,14 +33,83 @@ x-backed-by:
 - a16z
 x-tier: stub
 x-tier-reason: portfolio-lead
+x-status: defunct
+x-shutdown-date: '2017-03-14'
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-18'
 tags:
 - Company
-apis: []
+- Social
+- Microblogging
+- Messaging
+- Real Time
+- Streaming
+- Developer Platform
+- OAuth
+- Defunct
+apis:
+- name: App.net Stream API
+  description: >-
+    The App.net Stream API — a RESTful, OAuth 2.0-secured social API covering posts,
+    users, follows, channels/messages, files, filters, and a real-time streaming
+    surface. Responses use a uniform {data, meta} envelope with cursor pagination and
+    X-RateLimit-* headers. Service is retired (shut down 2017-03-14); documentation is
+    preserved at appdotnet/api-spec.
+  humanURL: https://github.com/appdotnet/api-spec
+  baseURL: https://api.app.net/stream/0/
+  tags:
+  - Social
+  - Microblogging
+  - Messaging
+  - Streaming
+  properties:
+  - type: Documentation
+    url: https://github.com/appdotnet/api-spec
+  - type: Authentication
+    url: authentication/appnet-authentication.yml
+  - type: OAuthScopes
+    url: scopes/appnet-scopes.yml
+  - type: RateLimits
+    url: rate-limits/appnet-rate-limits.yml
+  - type: ErrorCatalog
+    url: errors/appnet-problem-types.yml
+  - type: Conventions
+    url: conventions/appnet-conventions.yml
+common:
+- type: GitHubOrganization
+  url: https://github.com/appdotnet
+- type: Documentation
+  url: https://github.com/appdotnet/api-spec
+- type: TermsOfService
+  url: https://github.com/appdotnet/terms-of-service
+- type: Authentication
+  url: authentication/appnet-authentication.yml
+- type: OAuthScopes
+  url: scopes/appnet-scopes.yml
+- type: Packages
+  url: packages/appnet-packages.yml
+- type: SDKs
+  url: packages/appnet-packages.yml
+- type: Conventions
+  url: conventions/appnet-conventions.yml
+- type: ErrorCatalog
+  url: errors/appnet-problem-types.yml
+- type: Conformance
+  url: conformance/appnet-conformance.yml
+- type: Lifecycle
+  url: lifecycle/appnet-lifecycle.yml
+- type: RateLimits
+  url: rate-limits/appnet-rate-limits.yml
+- type: LLMsTxt
+  url: llms/appnet-llms.txt
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

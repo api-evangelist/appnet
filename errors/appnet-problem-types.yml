@@ -1,0 +1,63 @@
+generated: '2026-07-18'
+method: searched
+source: https://github.com/appdotnet/api-spec/blob/new-docs/content/reference/make-request/responses.md
+format: custom-envelope
+note: >-
+  App.net does not use RFC 9457 problem+json. Errors are returned inside the standard
+  {meta} object with `code`, `error_message`, and an optional `error_slug`/`error_id`.
+  No `data` key is present on an error response.
+envelope:
+  location: meta
+  fields: [code, error_message, error_slug, error_id]
+http_status_codes:
+- status: 200
+  title: OK
+  description: The request was successful.
+- status: 204
+  title: No Content
+  description: Returned when retrieving an incomplete file or uploading file content to an incomplete file.
+- status: 302
+  title: Found
+  description: Redirection to the final destination of a resource (file contents, user avatar, cover image).
+- status: 400
+  title: Bad Request
+  description: The API request was malformed; a message indicates how to fix it.
+- status: 401
+  title: Unauthorized
+  description: A token is required, or the supplied token is not authorized (see error slugs).
+- status: 403
+  title: Forbidden
+  description: The token lacks the right type or required scope for the request.
+- status: 404
+  title: Not Found
+  description: The requested resource was not found.
+- status: 405
+  title: Method Not Allowed
+  description: The HTTP method is not allowed; see the Allow header for acceptable methods.
+- status: 429
+  title: Too Many Requests
+  description: Rate limit exceeded; wait Retry-After seconds before retrying.
+- status: 500
+  title: Internal Server Error
+  description: An unexpected server error occurred and the App.net team was notified.
+- status: 507
+  title: Insufficient Storage
+  description: >-
+    The authorized user hit a quota limit (e.g. file upload, or a free account
+    exceeding its follow limit). See data.limits / data.storage on the current token.
+error_slugs:
+- slug: invalid-token
+  scope: global
+  description: The passed OAuth token was not valid; it may be corrupted or missing data.
+- slug: not-authorized
+  scope: global
+  description: The user for the given token likely revoked access to your app; reauthenticate.
+- slug: token-expired
+  scope: global
+  description: The passed token (or code) reached the end of its lifetime; generate a new one.
+- slug: code-used
+  scope: access_token
+  description: The passed OAuth code was already used to generate a token.
+- slug: redirect-uri-required
+  scope: access_token
+  description: The call to access_token must include redirect_uri.

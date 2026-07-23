@@ -1,0 +1,57 @@
+generated: '2026-07-18'
+method: searched
+source: https://github.com/appdotnet
+note: >-
+  First-party client libraries published by the appdotnet GitHub organization. The
+  Python library (ADNpy) is also published to PyPI as `adnpy`. All are unmaintained
+  since the App.net shutdown (2017-03-14) but remain publicly available.
+packages:
+- language: python
+  registry: pypi
+  name: adnpy
+  version: 0.3.8
+  url: https://pypi.org/project/adnpy/
+  repository: https://github.com/appdotnet/ADNpy
+  install: pip install adnpy
+  official: true
+  description: App.net API library for Python.
+- language: objective-c
+  registry: github
+  name: ADNLogin-SDK-iOS
+  url: https://github.com/appdotnet/ADNLogin-SDK-iOS
+  official: true
+  description: >-
+    App.net Login SDK for iOS — lets users authorize apps without entering passwords
+    (Native App SDK auth flow).
+- language: java
+  registry: github
+  name: ADNLogin-SDK-Android
+  url: https://github.com/appdotnet/ADNLogin-SDK-Android
+  official: true
+  description: App.net Login SDK for Android (Native App SDK auth flow).
+community_packages:
+- language: java
+  name: ADNLib
+  url: https://github.com/appdotnet/ADNLib
+  official: false
+  note: Fork in the appdotnet org; Android library.
+- language: objective-c
+  name: ADNKit
+  url: https://github.com/appdotnet/ADNKit
+  official: false
+  note: Fork in the appdotnet org; Objective-C framework for iOS/OS X.
+- language: php
+  name: AppDotNetPHP
+  url: https://github.com/appdotnet/AppDotNetPHP
+  official: false
+  note: Fork in the appdotnet org; PHP library for the Stream API.
+- language: ruby
+  name: adn
+  url: https://github.com/appdotnet/adn
+  official: false
+  note: Fork in the appdotnet org; Ruby library.
+- language: javascript
+  name: appnet.js
+  url: https://github.com/appdotnet/appnet.js
+  official: false
+  note: Fork in the appdotnet org; JavaScript library / jQuery plugin.

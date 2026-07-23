@@ -1,0 +1,34 @@
+generated: '2026-07-18'
+method: searched
+source: https://github.com/appdotnet/api-spec/blob/new-docs/content/reference/authentication/index.md
+docs: https://github.com/appdotnet/api-spec/tree/new-docs/content/reference/authentication
+note: >-
+  Scopes apply only to user tokens (not app tokens) and are requested on the initial
+  access-token request. The granted scopes are returned on each response via the
+  X-OAuth-Scopes header. The `basic` scope is always granted on creation of a user token.
+schemes:
+- name: OAuth2
+  authorizationUrl: https://account.app.net/oauth/authenticate
+  tokenUrl: https://account.app.net/oauth/access_token
+  flows: [authorizationCode, implicit, password]
+scopes:
+- scope: basic
+  description: See basic information about this user. Always granted on user-token creation.
+- scope: stream
+  description: Read this user's stream.
+- scope: write_post
+  description: Create a new post as this user.
+- scope: follow
+  description: Add or remove follows (or mutes) for this user.
+- scope: public_messages
+  description: Send and receive public messages as this user.
+- scope: messages
+  description: Send and receive public and private messages as this user.
+- scope: update_profile
+  description: Update a user's name, images, and other profile information.
+- scope: files
+  description: Manage a user's files. Not required for uploading files.
+- scope: export
+  description: >-
+    Bulk export all of this user's App.net data. Intended for backup services only;
+    users are shown an extra warning due to the sensitivity of this data.
