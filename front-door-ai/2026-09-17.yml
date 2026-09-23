@@ -1,0 +1,32 @@
+# Front Door AI Index — appnet — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: appnet
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: app.net
+  final_host: app.net
+  ownership: own
+  owner: appnet
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 19
+  host_score: 19
+  density: 20.54
+  words: 925
+  tiers:
+    agentic: 3
+    core: 14
+    model: 2
+  ambiguous: 1
+  top_terms:
+    AI: 11
+    ChatGPT: 2
+    RAG: 2
+    LLMs: 1
+    artificial intelligence: 1
+    chatbot: 1
+    intelligence: 1
+    machine learning: 1
